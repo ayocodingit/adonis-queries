@@ -4,9 +4,77 @@ Query builder lucid adonis.
 
 This package adds a query builder for use in the adonis framework. These query builders include:
  - when
- - whereBy and orWhereBy
- - whereDate and whereBetween
+ - whereDate
+ - whereBetween
+ - whereBy and orWhereBy 
  - whereHasBy and orWhereHasBy
+
+## Example:
+### Query when
+
+#### Before
+```javascript
+if (request.input('search')) {
+  model.where('name', request.input('search'))
+}
+```
+#### After
+```javascript
+model.when(request.input('search'), query => {
+  query.where('name', request.input('search'))
+})
+```
+### Query whereDate
+#### Before
+```javascript
+if (request.input('date')) {
+  model.whereRaw(`DATE(created_at) = ?`, [request.input('date')])
+}
+```
+#### After
+```javascript
+# by default operator is '=', but use custom other operator '<', '>', '<=', '<>', '>='
+model.whereDate('created_at', request.input('date'), operator)
+```
+
+### Query whereDateBetween
+#### Before
+```javascript
+if (request.input('start_date') && request.input('end_date')) {
+  model.whereRaw(`DATE(created_at) BETWEEN ? AND ?`, [request.input('start_date'), request.input('end_date')])
+}
+```
+#### After
+```javascript
+model.whereDateBetween('created_at', [request.input('start_date'), request.input('end_date')])
+```
+
+### Query whereBy and orWhereBy
+#### Before
+```javascript
+if (request.input('search')) {
+  model.where('name', request.input('search'))
+}
+```
+#### After
+```javascript
+model.whereBy('name', request.input('search'))
+ .orWhereBy('username', request.input('search'))
+```
+query whereHasBy and orWhereHasBy
+#### Before
+```javascript
+if (request.input('search')) {
+  model.whereHas('users', query => {
+    query.where('name', request.input('search'))
+  })
+}
+```
+#### After
+```javascript
+model.whereHasBy('users', 'name', request.input('search'))
+ .orWhereHasBy('users', 'username', request.input('search'))
+```
 
 ## How To Use
 Installation
