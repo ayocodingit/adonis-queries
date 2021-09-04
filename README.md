@@ -58,8 +58,9 @@ if (request.input('search')) {
 ```
 #### After
 ```javascript
-model.whereBy('name', request.input('search'))
- .orWhereBy('username', request.input('search'))
+# by default operator is '=', but use custom other operator '<', '>', '<=', '<>', '>=', 'like or ilike'
+model.whereBy('name', request.input('search'), operator)
+ .orWhereBy('username', request.input('search'), operator)
 ```
 query whereHasBy and orWhereHasBy
 #### Before
@@ -72,14 +73,15 @@ if (request.input('search')) {
 ```
 #### After
 ```javascript
-model.whereHasBy('users', 'name', request.input('search'))
- .orWhereHasBy('users', 'username', request.input('search'))
+# by default operator is '=', but use custom other operator '<', '>', '<=', '<>', '>=', 'like or ilike'
+model.whereHasBy('users', 'name', request.input('search'), operator)
+ .orWhereHasBy('users', 'username', request.input('search'), operator)
 ```
 
 ## How To Use
 Installation
 ```bash
-npm i adonis-queries
+npm i adonis-queries --save
 ```
 
 Make trait Query
