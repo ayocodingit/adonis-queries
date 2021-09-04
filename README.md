@@ -1,15 +1,14 @@
 # Adonis Queries
 
-query builder lucid adonis.
+Query builder lucid adonis.
 
 This package adds a query builder for use in the adonis framework. These query builders include:
-```bash
  - when
  - whereBy and orWhereBy
  - whereDate and whereBetween
  - whereHasBy and orWhereHasBy
-```
 
+How To Use
 ```bash
 adonis make:trait Query
 ```
