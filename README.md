@@ -8,11 +8,18 @@ This package adds a query builder for use in the adonis framework. These query b
  - whereDate and whereBetween
  - whereHasBy and orWhereHasBy
 
-How To Use
+## How To Use
+Installation
+```bash
+npm i adonis-queries
+```
+
+Make trait Query
 ```javascript
 adonis make:trait Query
 ```
 
+Register adonis queries on trait Query
 ```javascript
 const Queries = require('adonis-queries')
 
@@ -25,8 +32,7 @@ class Query {
 module.exports = Query
 ```
 
-How To Use Model
-
+Use to Model
 ```javascript
 class User extends Model {
   static boot () {
