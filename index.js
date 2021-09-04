@@ -7,7 +7,7 @@ const formatDate = (value) => {
 }
 
 const isValidDate = (value) => {
-    return moment(value).isValid()
+    return isNaN(new Date(value))
 }
 
 const conditionBetween = (value) => {
