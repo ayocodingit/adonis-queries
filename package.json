@@ -1,0 +1,26 @@
+{
+  "name": "adonis-queries",
+  "version": "1.0.0",
+  "description": "add trait query builder lucid adonis.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ayocodingit/adonis-queries.git"
+  },
+  "keywords": [
+    "trait",
+    "adonis",
+    "lucid",
+    "query",
+    "builder"
+  ],
+  "author": "ayocodingit",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ayocodingit/adonis-queries/issues"
+  },
+  "homepage": "https://github.com/ayocodingit/adonis-queries#readme"
+}
