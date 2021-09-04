@@ -3,15 +3,19 @@
 const moment = require('moment')
 
 const formatDate = (value) => {
-    return moment(value).format('YYYY-MM-DD')
+  return moment(value).format('YYYY-MM-DD')
 }
 
 const isValidDate = (value) => {
-    return isNaN(new Date(value)) ? false : true
+  return isNaN(new Date(value)) ? false : true
 }
 
 const conditionBetween = (value) => {
-    return Array.isArray(value) && value.length === 2 && isValidDate(value[0]) && isValidDate(value[1])
+  return Array.isArray(value) && value.length === 2
+}
+
+const conditionDateBetween = (value) => {
+  return conditionBetween(value) && isValidDate(value[0]) && isValidDate(value[1])
 }
 
 const when = (Model) => {
@@ -47,7 +51,7 @@ const whereDate = (Model) => {
     return this
   })
   Model.queryMacro('whereDateBetween', function (key, value) {
-    this.when(conditionBetween(value), query => {
+    this.when(conditionDateBetween(value), query => {
       query.whereRaw(`DATE(${key}) BETWEEN ? AND ?`, [formatDate(value[0]), formatDate(value[1])])
     })
     return this
