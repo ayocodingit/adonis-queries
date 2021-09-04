@@ -9,11 +9,11 @@ This package adds a query builder for use in the adonis framework. These query b
  - whereHasBy and orWhereHasBy
 
 How To Use
-```bash
+```javascript
 adonis make:trait Query
 ```
 
-```bash
+```javascript
 const Queries = require('adonis-queries')
 
 class Query {
@@ -27,7 +27,7 @@ module.exports = Query
 
 How To Use Model
 
-```bash
+```javascript
 class User extends Model {
   static boot () {
     super.boot()
