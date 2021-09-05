@@ -1,13 +1,15 @@
 # Adonis Queries
 
-Query builder lucid adonis.
+Query builder lucid adonis. this package is inspired by laravel query builder
 
 This package adds a query builder for use in the adonis framework. These query builders include:
  - when
  - whereDate
- - whereBetween
+ - whereBetween and whereNotBetween
  - whereBy and orWhereBy 
  - whereHasBy and orWhereHasBy
+ - exists and doesntExist
+ - value
 
 ## Example:
 ### Query when
@@ -47,6 +49,7 @@ if (request.input('start_date') && request.input('end_date')) {
 #### After
 ```javascript
 model.whereDateBetween('created_at', [request.input('start_date'), request.input('end_date')])
+model.whereDateNotBetween('created_at', [request.input('start_date'), request.input('end_date')])
 ```
 
 ### Query whereBy and orWhereBy
@@ -62,7 +65,7 @@ if (request.input('search')) {
 model.whereBy('name', request.input('search'), operator)
  .orWhereBy('username', request.input('search'), operator)
 ```
-query whereHasBy and orWhereHasBy
+### query whereHasBy and orWhereHasBy
 #### Before
 ```javascript
 if (request.input('search')) {
@@ -76,6 +79,21 @@ if (request.input('search')) {
 # by default operator is '=', but use custom other operator '<', '>', '<=', '<>', '>=', 'like or ilike'
 model.whereHasBy('users', 'name', request.input('search'), operator)
  .orWhereHasBy('users', 'username', request.input('search'), operator)
+```
+
+### Addition
+
+#### Exists and DoesntExist
+```javascript
+# return boolean true or false
+model.exists()
+model.doesntExist()
+```
+
+#### Value
+```javascript
+# return single field
+model.value('email')
 ```
 
 ## How To Use

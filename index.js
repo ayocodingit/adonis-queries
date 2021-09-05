@@ -56,6 +56,12 @@ const whereDate = (Model) => {
     })
     return this
   })
+  Model.queryMacro('whereDateNotBetween', function (key, value) {
+    this.when(conditionDateBetween(value), query => {
+      query.whereRaw(`DATE(${key}) NOT BETWEEN ? AND ?`, [formatDate(value[0]), formatDate(value[1])])
+    })
+    return this
+  })
 }
 
 const whereHas = (Model) => {
@@ -77,9 +83,31 @@ const whereHas = (Model) => {
   })
 }
 
+const exists = (Model) => {
+  Model.queryMacro('exists', async function () {
+    const result = await this.first()
+    if (result) return true
+    return false
+  })
+  Model.queryMacro('doesntExist', async function () {
+    const result = await this.first()
+    if (result) return false
+    return true
+  })
+}
+
+const value = (Model) => {
+  Model.queryMacro('value', async function (value) {
+    const result = await this.first()
+    return result && result[value] ? result[value] : null 
+  })
+}
+
 module.exports = (Model) => {
   when(Model)
   whereBy(Model)
   whereDate(Model)
   whereHas(Model)
+  exists(Model)
+  value(Model)
 }
