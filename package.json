@@ -1,6 +1,6 @@
 {
   "name": "adonis-queries",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "add trait query builder lucid adonis.",
   "main": "index.js",
   "scripts": {
