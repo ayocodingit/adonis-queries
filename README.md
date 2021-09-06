@@ -11,6 +11,40 @@ This package adds a query builder for use in the adonis framework. These query b
  - exists and doesntExist
  - value
 
+## How To Use
+Installation
+```bash
+npm i adonis-queries --save
+```
+
+Make trait Query
+```javascript
+adonis make:trait Query
+```
+
+Register adonis queries on trait Query
+```javascript
+const Queries = require('adonis-queries')
+
+class Query {
+  register (Model) {
+    Queries(Model)
+  }
+}
+
+module.exports = Query
+```
+
+Use to Model
+```javascript
+class User extends Model {
+  static boot () {
+    super.boot()
+    this.addTrait('Query')
+  }
+}
+```
+
 ## Example:
 ### Query when
 
@@ -96,39 +130,6 @@ model.doesntExist()
 model.value('email')
 ```
 
-## How To Use
-Installation
-```bash
-npm i adonis-queries --save
-```
-
-Make trait Query
-```javascript
-adonis make:trait Query
-```
-
-Register adonis queries on trait Query
-```javascript
-const Queries = require('adonis-queries')
-
-class Query {
-  register (Model) {
-    Queries(Model)
-  }
-}
-
-module.exports = Query
-```
-
-Use to Model
-```javascript
-class User extends Model {
-  static boot () {
-    super.boot()
-    this.addTrait('Query')
-  }
-}
-```
 ## License
 Copyright (c) 2021
 
